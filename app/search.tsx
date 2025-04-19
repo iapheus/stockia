@@ -64,12 +64,37 @@ export default function Search() {
   };
 
   const toggleFavorite = async (symbolCode: string) => {
-    setFavorites((prev) =>
-      prev.includes(symbolCode)
-        ? prev.filter((f) => f !== symbolCode)
-        : [...prev, symbolCode]
-    );
-    await AsyncStorage.setItem('favorites', symbolCode);
+    try {
+      const storedFavorites = await AsyncStorage.getItem('favorites');
+
+      let favoritesArray: string[] = [];
+
+      if (storedFavorites) {
+        try {
+          favoritesArray = JSON.parse(storedFavorites);
+          if (!Array.isArray(favoritesArray)) {
+            favoritesArray = [];
+          }
+        } catch (parseError) {
+          console.warn('Favorites JSON bozuktu, sıfırlandı.');
+          favoritesArray = [];
+        }
+      }
+
+      // Toggle işlemi
+      if (favoritesArray.includes(symbolCode)) {
+        favoritesArray = favoritesArray.filter((item) => item !== symbolCode);
+      } else {
+        favoritesArray.push(symbolCode);
+      }
+
+      await AsyncStorage.setItem('favorites', JSON.stringify(favoritesArray));
+      setFavorites(favoritesArray);
+
+      console.log('Updated favorites:', favoritesArray);
+    } catch (error) {
+      console.error('Error updating favorites:', error);
+    }
   };
 
   const renderItem = ({ item }: any) => {

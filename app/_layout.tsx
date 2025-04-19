@@ -2,7 +2,7 @@ import { Tabs, useRouter } from 'expo-router';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { colors } from '../constants/colors';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Pressable, Text, TouchableOpacity } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 
 export default function Layout() {
@@ -54,6 +54,9 @@ export default function Layout() {
               </Pressable>
             );
           },
+          headerLeft: () => {
+            return <Text style={{ marginLeft: 12, fontSize: 24 }}>Home</Text>;
+          },
           title: 'Home',
           tabBarIcon: ({ color }) => {
             return <AntDesign name='home' size={28} color={color} />;
@@ -69,10 +72,13 @@ export default function Layout() {
       <Tabs.Screen
         name='news/index'
         options={{
-          headerShown: false,
-          title: 'News',
+          headerShown: true,
+          title: '',
           tabBarIcon: ({ color }) => {
             return <FontAwesome name='newspaper-o' size={24} color={color} />;
+          },
+          headerLeft: () => {
+            return <Text style={{ marginLeft: 12, fontSize: 24 }}>News</Text>;
           },
           tabBarLabelStyle: { fontSize: 18 },
           tabBarShowLabel: false,
@@ -111,6 +117,29 @@ export default function Layout() {
           headerTintColor: 'white',
           headerRight: () => (
             <Text style={{ marginRight: 12, fontSize: 24 }}>Search</Text>
+          ),
+          headerLeft: () => {
+            return (
+              <Pressable
+                style={{ marginLeft: 12 }}
+                hitSlop={25}
+                onPress={router.back}
+              >
+                <AntDesign name='back' size={28} color='black' />
+              </Pressable>
+            );
+          },
+        }}
+      />
+      <Tabs.Screen
+        name='details/[symbol]'
+        options={{
+          title: '',
+          tabBarButton: (props) => null,
+          tabBarStyle: { display: 'none' },
+          headerTintColor: 'white',
+          headerRight: () => (
+            <Text style={{ marginRight: 12, fontSize: 24 }}>Details</Text>
           ),
           headerLeft: () => {
             return (
