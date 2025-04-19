@@ -135,7 +135,6 @@ const styles = StyleSheet.create({
   },
   pickerWrapper: {
     borderRadius: 10,
-    // backgroundColor: '#f2f2f2',
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
   },
   picker: {

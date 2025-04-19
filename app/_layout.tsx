@@ -36,6 +36,8 @@ export default function Layout() {
                 }}
               >
                 <Feather
+                  suppressHighlighting={true}
+                  onPress={() => router.navigate('search')}
                   name='search'
                   size={26}
                   style={{ padding: 12 }}
@@ -86,6 +88,29 @@ export default function Layout() {
           headerTintColor: 'white',
           headerRight: () => (
             <Text style={{ marginRight: 12, fontSize: 24 }}>Settings</Text>
+          ),
+          headerLeft: () => {
+            return (
+              <Pressable
+                style={{ marginLeft: 12 }}
+                hitSlop={25}
+                onPress={router.back}
+              >
+                <AntDesign name='back' size={28} color='black' />
+              </Pressable>
+            );
+          },
+        }}
+      />
+      <Tabs.Screen
+        name='search'
+        options={{
+          title: '',
+          tabBarButton: (props) => null,
+          tabBarStyle: { display: 'none' },
+          headerTintColor: 'white',
+          headerRight: () => (
+            <Text style={{ marginRight: 12, fontSize: 24 }}>Search</Text>
           ),
           headerLeft: () => {
             return (
