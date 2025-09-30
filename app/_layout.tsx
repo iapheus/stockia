@@ -1,171 +1,166 @@
 import { Tabs, useRouter } from 'expo-router';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { colors } from '../constants/colors';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Pressable, Text } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 
 export default function Layout() {
-  const router = useRouter();
+	const router = useRouter();
 
-  return (
-    <Tabs
-      sceneContainerStyle={{
-        backgroundColor: colors.darkBG,
-      }}
-      screenOptions={{
-        tabBarStyle: {
-          minHeight: 75,
-          backgroundColor: colors.darkBG,
-          borderTopColor: 'transparent',
-        },
-        headerTransparent: true,
-      }}
-    >
-      <Tabs.Screen
-        name='index'
-        options={{
-          headerTitle: '',
-          headerRight: () => {
-            return (
-              <Pressable
-                style={{
-                  marginRight: 12,
-                  flexDirection: 'row',
-                  gap: 4,
-                }}
-              >
-                <Feather
-                  suppressHighlighting={true}
-                  onPress={() => router.navigate('search')}
-                  name='search'
-                  size={26}
-                  style={{ padding: 12 }}
-                  color='#8E8E8F'
-                />
-                <Feather
-                  onPress={() => router.navigate('settings')}
-                  name='settings'
-                  size={26}
-                  style={{ padding: 12 }}
-                  suppressHighlighting={true}
-                  color='#8E8E8F'
-                />
-              </Pressable>
-            );
-          },
-          headerLeft: () => {
-            return <Text style={{ marginLeft: 12, fontSize: 24 }}>Home</Text>;
-          },
-          title: 'Home',
-          tabBarIcon: ({ color }) => {
-            return <AntDesign name='home' size={28} color={color} />;
-          },
-          headerStyle: {
-            backgroundColor: colors.secondaryDarkBG,
-          },
-          tabBarLabelStyle: { fontSize: 18 },
-          tabBarActiveTintColor: 'white',
-          tabBarShowLabel: false,
-        }}
-      />
-      <Tabs.Screen
-        name='news/index'
-        options={{
-          headerShown: true,
-          title: '',
-          tabBarIcon: ({ color }) => {
-            return <FontAwesome name='newspaper-o' size={24} color={color} />;
-          },
-          headerLeft: () => {
-            return <Text style={{ marginLeft: 12, fontSize: 24 }}>News</Text>;
-          },
-          tabBarLabelStyle: { fontSize: 18 },
-          tabBarShowLabel: false,
-          tabBarActiveTintColor: 'white',
-        }}
-      />
-      <Tabs.Screen
-        name='settings'
-        options={{
-          title: '',
-          tabBarButton: (props) => null,
-          tabBarStyle: { display: 'none' },
-          headerTintColor: 'white',
-          headerRight: () => (
-            <Text style={{ marginRight: 12, fontSize: 24 }}>Settings</Text>
-          ),
-          headerLeft: () => {
-            return (
-              <Pressable
-                style={{ marginLeft: 12 }}
-                hitSlop={25}
-                onPress={router.back}
-              >
-                <AntDesign name='back' size={28} color='black' />
-              </Pressable>
-            );
-          },
-        }}
-      />
-      <Tabs.Screen
-        name='search'
-        options={{
-          title: '',
-          tabBarButton: (props) => null,
-          tabBarStyle: { display: 'none' },
-          headerTintColor: 'white',
-          headerRight: () => (
-            <Text style={{ marginRight: 12, fontSize: 24 }}>Search</Text>
-          ),
-          headerLeft: () => {
-            return (
-              <Pressable
-                style={{ marginLeft: 12 }}
-                hitSlop={25}
-                onPress={router.back}
-              >
-                <AntDesign name='back' size={28} color='black' />
-              </Pressable>
-            );
-          },
-        }}
-      />
-      <Tabs.Screen
-        name='details/[symbol]'
-        options={{
-          title: '',
-          tabBarButton: (props) => null,
-          tabBarStyle: { display: 'none' },
-          headerTintColor: 'white',
-          headerRight: () => (
-            <Text style={{ marginRight: 12, fontSize: 24 }}>Details</Text>
-          ),
-          headerLeft: () => {
-            return (
-              <Pressable
-                style={{ marginLeft: 12 }}
-                hitSlop={25}
-                onPress={router.back}
-              >
-                <AntDesign name='back' size={28} color='black' />
-              </Pressable>
-            );
-          },
-        }}
-      />
-    </Tabs>
-  );
+	return (
+		<Tabs
+			sceneContainerStyle={{
+				backgroundColor: colors.darkBG,
+			}}
+			screenOptions={{
+				tabBarStyle: {
+					minHeight: 75,
+					backgroundColor: colors.darkBG,
+					borderTopColor: 'transparent',
+				},
+				headerTransparent: true,
+				tabBarItemStyle: {
+					justifyContent: 'center',
+					alignItems: 'center',
+					flex: '1',
+					flexGrow: 56,
+				},
+			}}
+		>
+			<Tabs.Screen
+				name="index"
+				options={{
+					headerTitle: '',
+					headerRight: () => {
+						return (
+							<Pressable
+								style={{
+									marginRight: 12,
+									flexDirection: 'row',
+									gap: 4,
+								}}
+							>
+								<Feather
+									suppressHighlighting={true}
+									onPress={() => router.navigate('search')}
+									name="search"
+									size={26}
+									style={{ padding: 12 }}
+									color="#8E8E8F"
+								/>
+								<Feather
+									onPress={() => router.navigate('settings')}
+									name="settings"
+									size={26}
+									style={{ padding: 12 }}
+									suppressHighlighting={true}
+									color="#8E8E8F"
+								/>
+							</Pressable>
+						);
+					},
+					headerLeft: () => {
+						return <Text style={{ marginLeft: 12, fontSize: 24 }}>Home</Text>;
+					},
+					title: 'Home',
+					tabBarIcon: ({ color }) => {
+						return <AntDesign name="home" size={28} color={color} />;
+					},
+					headerStyle: {
+						backgroundColor: colors.secondaryDarkBG,
+					},
+					tabBarLabelStyle: { fontSize: 18 },
+					tabBarActiveTintColor: 'white',
+					tabBarShowLabel: false,
+				}}
+			/>
+			<Tabs.Screen
+				name="news/index"
+				options={{
+					headerShown: true,
+					title: '',
+					tabBarIcon: ({ color }) => {
+						return <FontAwesome name="newspaper-o" size={24} color={color} />;
+					},
+					headerLeft: () => {
+						return <Text style={{ marginLeft: 12, fontSize: 24 }}>News</Text>;
+					},
+					tabBarLabelStyle: { fontSize: 18 },
+					tabBarShowLabel: false,
+					tabBarActiveTintColor: 'white',
+				}}
+			/>
+			<Tabs.Screen
+				name="settings"
+				options={{
+					title: '',
+					href: null,
+					tabBarStyle: { display: 'none' },
+					headerTintColor: 'white',
+					headerRight: () => (
+						<Text style={{ marginRight: 12, fontSize: 24 }}>Settings</Text>
+					),
+					headerLeft: () => {
+						return (
+							<Pressable
+								style={{ marginLeft: 12 }}
+								hitSlop={25}
+								onPress={router.back}
+							>
+								<Ionicons name="arrow-back-outline" size={24} color="black" />
+							</Pressable>
+						);
+					},
+				}}
+			/>
+			<Tabs.Screen
+				name="search"
+				options={{
+					title: '',
+					href: null,
+					tabBarStyle: { display: 'none' },
+					headerTintColor: 'white',
+					headerRight: () => (
+						<Text style={{ marginRight: 12, fontSize: 24 }}>Search</Text>
+					),
+					headerLeft: () => {
+						return (
+							<Pressable
+								style={{ marginLeft: 12 }}
+								hitSlop={25}
+								onPress={router.back}
+							>
+								<Ionicons name="arrow-back-outline" size={24} color="black" />
+							</Pressable>
+						);
+					},
+				}}
+			/>
+			<Tabs.Screen
+				name="details/[symbol]"
+				options={{
+					title: '',
+					href: null,
+					tabBarStyle: { display: 'none' },
+					headerTintColor: 'white',
+					headerRight: () => (
+						<Text style={{ marginRight: 12, fontSize: 24 }}>Details</Text>
+					),
+					headerLeft: () => {
+						return (
+							<Pressable
+								style={{ marginLeft: 12 }}
+								hitSlop={25}
+								onPress={router.back}
+							>
+								<Ionicons name="arrow-back-outline" size={24} color="black" />
+							</Pressable>
+						);
+					},
+				}}
+			/>
+		</Tabs>
+	);
 }
-
-// const styles = {
-//   indexScreen: StyleSheet.create({
-//     pressable: {
-//       flex: 1,
-//     },
-//     svg: {
-//       width: 100,
-//       height: 100,
-//     },
-//   }),
-// };
